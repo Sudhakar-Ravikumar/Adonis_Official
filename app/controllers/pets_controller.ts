@@ -4,9 +4,16 @@ import { storePetValidator } from '#validators/store_pet'
 
 export default class PetsController {
   async index() {
-    return await Pet.all()
+    const pets = await Pet.all()
+    console.log(pets)
+    //Outputs: [Pet { ... }, Pet { ... }]
+    // const result = Pet.all() // ← a Promise, not the actual data
+    // console.log(result) // Outputs: Promise { <pending> }
+    return pets
+    //AdonisJS automatically converts your return value to JSON when you return it from a controller method without manually using response.json().
   }
-
+  
+  
   async store({ request }: HttpContext) {
     const data = await request.validateUsing(storePetValidator)
     //Extracts only the request body (request.body())

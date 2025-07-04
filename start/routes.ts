@@ -4,8 +4,13 @@ import router from '@adonisjs/core/services/router'
 import type { HttpContext } from '@adonisjs/core/http'
 //Imports the HttpContext type, which contains information about the HTTP request and response.
 import PetsController from '#controllers/pets_controller'
+import CatsController from '#controllers/cats_controller'
 
 
+router
+  .resource('/cats', CatsController)
+  .apiOnly() 
+  
 router
   .resource('/pets', PetsController)
   .apiOnly()
@@ -47,4 +52,4 @@ router.delete('*', handleInvalidRoute)
 // It checks: "Do I have a route that matches this request?"
 // If it finds one in the earlier routes (like /pets, /pets/:id), it uses that.
 // If none of the earlier routes match, it reaches the wildcard '*' — the "catch-all".
-//.get('*', ...) means: “Catch all unmatched GET requests.”
+//.get('*', ...) means: “Catch all unmatched GET requests.”..# TZ=UTC
